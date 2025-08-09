@@ -1,0 +1,418 @@
+/*
+ * Stylesheet for Axon Financial Group website
+ *
+ * This file defines the colour palette, layout, and responsive behaviour
+ * for the website. CSS variables are used for easy customisation.
+ */
+
+:root {
+  /* Colour palette inspired by the illustrations */
+  --primary-color: #004a7c;
+  --secondary-color: #0078b7;
+  --accent-color: #f5a623;
+  --light-bg: #f7f9fc;
+  --dark-text: #222;
+  --light-text: #fff;
+  --logo-bg: #faf8f5;
+}
+
+/* Reset and global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--dark-text);
+  line-height: 1.6;
+  background-color: #ffffff;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Navigation styles */
+header {
+  background-color: var(--logo-bg);
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  color: var(--light-text);
+}
+
+/* Social icons in the navigation bar */
+.nav-social {
+  display: none;
+  align-items: center;
+}
+
+.nav-social a {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  margin-left: 1rem;
+  transition: color 0.3s;
+}
+
+.nav-social a:hover {
+  color: var(--accent-color);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  /* Use primary navy colour for the brand name so it stands out on the light banner */
+  color: var(--primary-color);
+}
+
+/* logo icon inside the nav */
+.logo-icon {
+  /* Increase the logo size to occupy roughly 75% of the banner height */
+  width: 48px;
+  height: 48px;
+  margin-right: 0.5rem;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--primary-color);
+}
+
+.menu-toggle {
+  display: none;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.nav-links li {
+  margin-left: 1.5rem;
+}
+
+.nav-links a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--accent-color);
+}
+
+/* Hero section */
+/* Hero section redesign: gradient background and two-column layout */
+.hero {
+  background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: var(--light-text);
+  padding: 4rem 0;
+}
+
+.hero-inner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.hero-text {
+  flex: 1;
+  min-width: 280px;
+}
+
+.hero-text h1 {
+  font-size: 2.7rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.hero-text p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  max-width: 550px;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: var(--accent-color);
+  color: var(--dark-text);
+  padding: 0.8rem 1.6rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s, color 0.3s;
+}
+
+.cta-button:hover {
+  background-color: var(--light-text);
+  color: var(--primary-color);
+}
+
+.hero-img {
+  flex: 1;
+  min-width: 300px;
+}
+
+.hero-img img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  object-position: right center;
+}
+
+/* Generic section spacing */
+.section {
+  padding: 4rem 0;
+}
+
+.section h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+/* Services grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.service-card {
+  background: var(--light-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s;
+}
+
+.service-card h3 {
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Benefits list styling */
+.benefits-list {
+  list-style: none;
+  max-width: 900px;
+  margin: 0 auto;
+  padding-left: 0;
+}
+
+.benefits-list li {
+  position: relative;
+  padding-left: 2.2rem;
+  margin-bottom: 1.2rem;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.benefits-list li::before {
+  content: '\2714'; /* check mark */
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* Use a green tick colour to convey positivity */
+  color: #2ecc71;
+  font-weight: 700;
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+/* Light background section */
+.light-bg {
+  background-color: var(--light-bg);
+}
+
+/* About section layout */
+.about-flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+}
+
+.about-image {
+  width: 100%;
+  max-width: 450px;
+  border-radius: 8px;
+  flex: 1;
+}
+
+.about-flex > div {
+  flex: 1;
+}
+
+/* Contact form styling */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.contact-form label {
+  font-weight: 600;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+.contact-form button {
+  background-color: var(--primary-color);
+  color: var(--light-text);
+  border: none;
+  padding: 0.75rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.contact-form button:hover {
+  background-color: var(--secondary-color);
+}
+
+.contact-details {
+  margin-top: 2rem;
+  font-size: 0.95rem;
+}
+
+.contact-details a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.contact-details a:hover {
+  text-decoration: underline;
+}
+
+/* Social media links */
+.social-links {
+  margin-top: 1rem;
+}
+
+.social-links a {
+  color: var(--primary-color);
+  font-size: 1.4rem;
+  margin-right: 1rem;
+  display: inline-block;
+  transition: color 0.3s;
+}
+
+.social-links a:last-child {
+  margin-right: 0;
+}
+
+.social-links a:hover {
+  color: var(--accent-color);
+}
+
+/* Footer styling */
+.footer {
+  background-color: var(--primary-color);
+  color: var(--light-text);
+  padding: 1rem 0;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* Responsive rules */
+@media (max-width: 768px) {
+  /* Stack nav links for small screens */
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--primary-color);
+    flex-direction: column;
+    align-items: center;
+    display: none;
+    padding: 1rem 0;
+  }
+  .nav-links li {
+    margin: 1rem 0;
+  }
+  .nav-links a {
+    /* Ensure menu items are visible on the dark mobile dropdown */
+    color: var(--light-text);
+  }
+  .menu-icon {
+    display: block;
+  }
+  .menu-toggle:checked + .menu-icon + .nav-links {
+    display: flex;
+  }
+  /* Adjust hero height and headings */
+  .hero {
+    padding: 3rem 0;
+  }
+  .hero-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero-img {
+    order: -1;
+  }
+  .hero-text h1 {
+    font-size: 2.2rem;
+  }
+  .hero-text p {
+    font-size: 1.1rem;
+    max-width: none;
+  }
+  /* Stack services grid to single column */
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  /* Stack about content */
+  .about-flex {
+    flex-direction: column;
+  }
+}
+
+/* Show social icons in the nav on wider screens */
+@media (min-width: 769px) {
+  .nav-social {
+    display: flex;
+  }
+}
