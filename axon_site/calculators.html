@@ -49,10 +49,10 @@
       <input type="number" id="income" min="0" required>
       <label for="expenses">Monthly expenses</label>
       <input type="number" id="expenses" min="0" required>
-      <label for="bc-rate">Interest rate (%)</label>
-      <input type="number" id="bc-rate" step="0.01" min="0" required>
-      <label for="bc-term">Loan term (years)</label>
-      <input type="number" id="bc-term" min="1" required>
+      <label for="bc-rate">Interest rate (%) <span id="bc-rate-display"></span></label>
+      <input type="range" id="bc-rate" step="0.01" min="0" max="10" value="5" required>
+      <label for="bc-term">Loan term (years) <span id="bc-term-display"></span></label>
+      <input type="range" id="bc-term" min="1" max="30" value="30" required>
       <button type="submit">Calculate</button>
       <div class="calculator-result" id="borrow-result"></div>
     </form>
@@ -62,10 +62,10 @@
     <form id="repay-form" class="calculator">
       <label for="loan-amount">Loan amount</label>
       <input type="number" id="loan-amount" min="0" required>
-      <label for="repay-rate">Interest rate (%)</label>
-      <input type="number" id="repay-rate" step="0.01" min="0" required>
-      <label for="repay-term">Loan term (years)</label>
-      <input type="number" id="repay-term" min="1" required>
+      <label for="repay-rate">Interest rate (%) <span id="repay-rate-display"></span></label>
+      <input type="range" id="repay-rate" step="0.01" min="0" max="10" value="5" required>
+      <label for="repay-term">Loan term (years) <span id="repay-term-display"></span></label>
+      <input type="range" id="repay-term" min="1" max="30" value="30" required>
       <button type="submit">Calculate</button>
       <div class="calculator-result" id="repay-result"></div>
     </form>
@@ -75,12 +75,12 @@
     <form id="refi-form" class="calculator">
       <label for="refi-amount">Loan amount</label>
       <input type="number" id="refi-amount" min="0" required>
-      <label for="current-rate">Current interest rate (%)</label>
-      <input type="number" id="current-rate" step="0.01" min="0" required>
-      <label for="new-rate">New interest rate (%)</label>
-      <input type="number" id="new-rate" step="0.01" min="0" required>
-      <label for="refi-term">Remaining term (years)</label>
-      <input type="number" id="refi-term" min="1" required>
+      <label for="current-rate">Current interest rate (%) <span id="current-rate-display"></span></label>
+      <input type="range" id="current-rate" step="0.01" min="0" max="10" value="5" required>
+      <label for="new-rate">New interest rate (%) <span id="new-rate-display"></span></label>
+      <input type="range" id="new-rate" step="0.01" min="0" max="10" value="5" required>
+      <label for="refi-term">Remaining term (years) <span id="refi-term-display"></span></label>
+      <input type="range" id="refi-term" min="1" max="30" value="30" required>
       <button type="submit">Calculate</button>
       <div class="calculator-result" id="refi-result"></div>
     </form>
@@ -105,10 +105,10 @@
       <input type="number" id="target" min="0" required>
       <label for="current">Current savings</label>
       <input type="number" id="current" min="0" value="0" required>
-      <label for="deposit-years">Timeframe (years)</label>
-      <input type="number" id="deposit-years" min="1" required>
-      <label for="deposit-rate">Annual interest rate (%)</label>
-      <input type="number" id="deposit-rate" step="0.01" min="0" value="0" required>
+      <label for="deposit-years">Timeframe (years) <span id="deposit-years-display"></span></label>
+      <input type="range" id="deposit-years" min="1" max="30" value="10" required>
+      <label for="deposit-rate">Annual interest rate (%) <span id="deposit-rate-display"></span></label>
+      <input type="range" id="deposit-rate" step="0.01" min="0" max="10" value="0" required>
       <button type="submit">Calculate</button>
       <div class="calculator-result" id="deposit-result"></div>
     </form>
