@@ -42,73 +42,109 @@
   </section>
 
   <section class="section container">
-    <h2>Borrowing Capacity</h2>
+    <h2><i class="fas fa-wallet" aria-hidden="true"></i> Borrowing Capacity</h2>
     <p>Get an indication of how much you could borrow based on your income and expenses.</p>
     <form id="borrow-form" class="calculator">
-      <label for="income">Annual income (before tax)</label>
-      <input type="number" id="income" min="0" required>
-      <label for="expenses">Monthly expenses</label>
-      <input type="number" id="expenses" min="0" required>
-      <label for="bc-rate">Interest rate (%)</label>
-      <input type="number" id="bc-rate" step="0.01" min="0" required>
-      <label for="bc-term">Loan term (years)</label>
-      <input type="number" id="bc-term" min="1" required>
+      <div class="form-group">
+        <label for="income">Annual income (before tax)</label>
+        <input type="number" id="income" min="0" required>
+      </div>
+      <div class="form-group">
+        <label for="expenses">Monthly expenses</label>
+        <input type="number" id="expenses" min="0" required>
+      </div>
+      <div class="form-group">
+        <label for="bc-rate">Interest rate (%)</label>
+        <input type="number" id="bc-rate" step="0.01" min="0" required>
+      </div>
+      <div class="form-group">
+        <label for="bc-term">Loan term (years)</label>
+        <input type="number" id="bc-term" min="1" required>
+      </div>
       <button type="submit">Calculate</button>
       <div class="calculator-result" id="borrow-result"></div>
     </form>
 
-    <h2>Repayment Calculator</h2>
+    <h2><i class="fas fa-calculator" aria-hidden="true"></i> Repayment Calculator</h2>
     <p>Estimate your repayments for different loan amounts and terms.</p>
     <form id="repay-form" class="calculator">
-      <label for="loan-amount">Loan amount</label>
-      <input type="number" id="loan-amount" min="0" required>
-      <label for="repay-rate">Interest rate (%)</label>
-      <input type="number" id="repay-rate" step="0.01" min="0" required>
-      <label for="repay-term">Loan term (years)</label>
-      <input type="number" id="repay-term" min="1" required>
+      <div class="form-group">
+        <label for="loan-amount">Loan amount</label>
+        <input type="number" id="loan-amount" min="0" required>
+      </div>
+      <div class="form-group">
+        <label for="repay-rate">Interest rate (%)</label>
+        <input type="number" id="repay-rate" step="0.01" min="0" required>
+      </div>
+      <div class="form-group">
+        <label for="repay-term">Loan term (years)</label>
+        <input type="number" id="repay-term" min="1" required>
+      </div>
       <button type="submit">Calculate</button>
       <div class="calculator-result" id="repay-result"></div>
     </form>
 
-    <h2>Refinance Savings</h2>
+    <h2><i class="fas fa-sync-alt" aria-hidden="true"></i> Refinance Savings</h2>
     <p>Explore how refinancing could reduce your monthly repayments.</p>
     <form id="refi-form" class="calculator">
-      <label for="refi-amount">Loan amount</label>
-      <input type="number" id="refi-amount" min="0" required>
-      <label for="current-rate">Current interest rate (%)</label>
-      <input type="number" id="current-rate" step="0.01" min="0" required>
-      <label for="new-rate">New interest rate (%)</label>
-      <input type="number" id="new-rate" step="0.01" min="0" required>
-      <label for="refi-term">Remaining term (years)</label>
-      <input type="number" id="refi-term" min="1" required>
+      <div class="form-group">
+        <label for="refi-amount">Loan amount</label>
+        <input type="number" id="refi-amount" min="0" required>
+      </div>
+      <div class="form-group">
+        <label for="current-rate">Current interest rate (%)</label>
+        <input type="number" id="current-rate" step="0.01" min="0" required>
+      </div>
+      <div class="form-group">
+        <label for="new-rate">New interest rate (%)</label>
+        <input type="number" id="new-rate" step="0.01" min="0" required>
+      </div>
+      <div class="form-group">
+        <label for="refi-term">Remaining term (years)</label>
+        <input type="number" id="refi-term" min="1" required>
+      </div>
       <button type="submit">Calculate</button>
       <div class="calculator-result" id="refi-result"></div>
     </form>
 
-    <h2>Investment Property ROI</h2>
+    <h2><i class="fas fa-chart-line" aria-hidden="true"></i> Investment Property ROI</h2>
     <p>Analyse potential rental income and expenses to assess your investment’s cash flow.</p>
     <form id="invest-form" class="calculator">
-      <label for="property-price">Property price</label>
-      <input type="number" id="property-price" min="0" required>
-      <label for="rent">Monthly rent</label>
-      <input type="number" id="rent" min="0" required>
-      <label for="invest-expenses">Monthly expenses</label>
-      <input type="number" id="invest-expenses" min="0" required>
+      <div class="form-group">
+        <label for="property-price">Property price</label>
+        <input type="number" id="property-price" min="0" required>
+      </div>
+      <div class="form-group">
+        <label for="rent">Monthly rent</label>
+        <input type="number" id="rent" min="0" required>
+      </div>
+      <div class="form-group">
+        <label for="invest-expenses">Monthly expenses</label>
+        <input type="number" id="invest-expenses" min="0" required>
+      </div>
       <button type="submit">Calculate</button>
       <div class="calculator-result" id="invest-result"></div>
     </form>
 
-    <h2>Deposit Savings Target</h2>
+    <h2><i class="fas fa-piggy-bank" aria-hidden="true"></i> Deposit Savings Target</h2>
     <p>Set a deposit goal and see how much you need to save each month to reach it by a given date.</p>
     <form id="deposit-form" class="calculator">
-      <label for="target">Target amount</label>
-      <input type="number" id="target" min="0" required>
-      <label for="current">Current savings</label>
-      <input type="number" id="current" min="0" value="0" required>
-      <label for="deposit-years">Timeframe (years)</label>
-      <input type="number" id="deposit-years" min="1" required>
-      <label for="deposit-rate">Annual interest rate (%)</label>
-      <input type="number" id="deposit-rate" step="0.01" min="0" value="0" required>
+      <div class="form-group">
+        <label for="target">Target amount</label>
+        <input type="number" id="target" min="0" required>
+      </div>
+      <div class="form-group">
+        <label for="current">Current savings</label>
+        <input type="number" id="current" min="0" value="0" required>
+      </div>
+      <div class="form-group">
+        <label for="deposit-years">Timeframe (years)</label>
+        <input type="number" id="deposit-years" min="1" required>
+      </div>
+      <div class="form-group">
+        <label for="deposit-rate">Annual interest rate (%)</label>
+        <input type="number" id="deposit-rate" step="0.01" min="0" value="0" required>
+      </div>
       <button type="submit">Calculate</button>
       <div class="calculator-result" id="deposit-result"></div>
     </form>
