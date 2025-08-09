@@ -44,33 +44,74 @@
   <section class="section container">
     <h2>Borrowing Capacity</h2>
     <p>Get an indication of how much you could borrow based on your income and expenses.</p>
-    <div id="calc-borrowing" style="margin-bottom:2rem;">
-      <iframe src="https://embed.quickli.com.au/placeholder-borrowing" title="Borrowing Capacity Calculator" width="100%" height="600" style="border:0; border-radius:8px; max-width:100%;"></iframe>
-    </div>
+    <form id="borrow-form" class="calculator">
+      <label for="income">Annual income (before tax)</label>
+      <input type="number" id="income" min="0" required>
+      <label for="expenses">Monthly expenses</label>
+      <input type="number" id="expenses" min="0" required>
+      <label for="bc-rate">Interest rate (%)</label>
+      <input type="number" id="bc-rate" step="0.01" min="0" required>
+      <label for="bc-term">Loan term (years)</label>
+      <input type="number" id="bc-term" min="1" required>
+      <button type="submit">Calculate</button>
+      <div class="calculator-result" id="borrow-result"></div>
+    </form>
 
     <h2>Repayment Calculator</h2>
     <p>Estimate your repayments for different loan amounts and terms.</p>
-    <div id="calc-repayment" style="margin-bottom:2rem;">
-      <iframe src="https://embed.quickli.com.au/placeholder-repayment" title="Loan Repayment Calculator" width="100%" height="600" style="border:0; border-radius:8px; max-width:100%;"></iframe>
-    </div>
+    <form id="repay-form" class="calculator">
+      <label for="loan-amount">Loan amount</label>
+      <input type="number" id="loan-amount" min="0" required>
+      <label for="repay-rate">Interest rate (%)</label>
+      <input type="number" id="repay-rate" step="0.01" min="0" required>
+      <label for="repay-term">Loan term (years)</label>
+      <input type="number" id="repay-term" min="1" required>
+      <button type="submit">Calculate</button>
+      <div class="calculator-result" id="repay-result"></div>
+    </form>
 
     <h2>Refinance Savings</h2>
     <p>Explore how refinancing could reduce your monthly repayments.</p>
-    <div id="calc-refinance" style="margin-bottom:2rem;">
-      <iframe src="https://embed.quickli.com.au/placeholder-refinance" title="Refinance Calculator" width="100%" height="600" style="border:0; border-radius:8px; max-width:100%;"></iframe>
-    </div>
+    <form id="refi-form" class="calculator">
+      <label for="refi-amount">Loan amount</label>
+      <input type="number" id="refi-amount" min="0" required>
+      <label for="current-rate">Current interest rate (%)</label>
+      <input type="number" id="current-rate" step="0.01" min="0" required>
+      <label for="new-rate">New interest rate (%)</label>
+      <input type="number" id="new-rate" step="0.01" min="0" required>
+      <label for="refi-term">Remaining term (years)</label>
+      <input type="number" id="refi-term" min="1" required>
+      <button type="submit">Calculate</button>
+      <div class="calculator-result" id="refi-result"></div>
+    </form>
 
     <h2>Investment Property ROI</h2>
     <p>Analyse potential rental income and expenses to assess your investment’s cash flow.</p>
-    <div id="calc-investment" style="margin-bottom:2rem;">
-      <iframe src="https://embed.quickli.com.au/placeholder-investment" title="Investment Property Calculator" width="100%" height="600" style="border:0; border-radius:8px; max-width:100%;"></iframe>
-    </div>
+    <form id="invest-form" class="calculator">
+      <label for="property-price">Property price</label>
+      <input type="number" id="property-price" min="0" required>
+      <label for="rent">Monthly rent</label>
+      <input type="number" id="rent" min="0" required>
+      <label for="invest-expenses">Monthly expenses</label>
+      <input type="number" id="invest-expenses" min="0" required>
+      <button type="submit">Calculate</button>
+      <div class="calculator-result" id="invest-result"></div>
+    </form>
 
     <h2>Deposit Savings Target</h2>
     <p>Set a deposit goal and see how much you need to save each month to reach it by a given date.</p>
-    <div id="calc-deposit" style="margin-bottom:2rem;">
-      <iframe src="https://embed.quickli.com.au/placeholder-deposit" title="Deposit Savings Calculator" width="100%" height="600" style="border:0; border-radius:8px; max-width:100%;"></iframe>
-    </div>
+    <form id="deposit-form" class="calculator">
+      <label for="target">Target amount</label>
+      <input type="number" id="target" min="0" required>
+      <label for="current">Current savings</label>
+      <input type="number" id="current" min="0" value="0" required>
+      <label for="deposit-years">Timeframe (years)</label>
+      <input type="number" id="deposit-years" min="1" required>
+      <label for="deposit-rate">Annual interest rate (%)</label>
+      <input type="number" id="deposit-rate" step="0.01" min="0" value="0" required>
+      <button type="submit">Calculate</button>
+      <div class="calculator-result" id="deposit-result"></div>
+    </form>
   </section>
 
   <section class="section" style="text-align:center;">
@@ -88,5 +129,6 @@
       <p>© 2025 Axon Financial Group. All rights reserved.</p>
     </div>
   </footer>
+  <script src="calculators.js"></script>
 </body>
 </html>
