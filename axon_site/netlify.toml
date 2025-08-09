@@ -1,0 +1,7 @@
+# Axon Financial Group Website/netlify.toml
+[build]
+  publish = "."        # serve this folder as the site
+  command = ""         # no build step
+
+[functions]
+  directory = "netlify/functions"
