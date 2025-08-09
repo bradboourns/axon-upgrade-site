@@ -39,6 +39,16 @@ body {
   margin-right: auto;
 }
 
+a {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
 /* Navigation styles */
 header {
   background-color: var(--logo-bg);
@@ -346,6 +356,22 @@ nav {
 
 .social-links a:hover {
   color: var(--accent-color);
+}
+
+.faq-list details {
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+.faq-list summary {
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.faq-list p {
+  margin-top: 0.5rem;
 }
 
 /* Footer styling */

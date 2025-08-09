@@ -30,7 +30,6 @@
         <li><a href="blog/index.html">Blog</a></li>
         <li><a href="faq.html">FAQ</a></li>
         <li><a href="team.html">Team</a></li>
-        <li><a href="testimonials.html">Testimonials</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
       <div class="nav-social">
@@ -79,6 +78,18 @@
         <h3><a href="services/debt-consolidation.html">Debt Consolidation</a></h3>
         <p>Simplify your finances by consolidating multiple debts into a manageable mortgage solution.</p>
       </div>
+      <div class="service-card">
+        <h3><a href="services/medical-professionals.html">Medical Professional Home Loans</a></h3>
+        <p>Loans tailored for doctors, nurses and other healthcare workers.</p>
+      </div>
+      <div class="service-card">
+        <h3><a href="services/defence-personnel.html">Defence Personnel Loans</a></h3>
+        <p>Specialist guidance on ADF housing benefits and mortgage options.</p>
+      </div>
+      <div class="service-card">
+        <h3><a href="services/self-employed-loans.html">Self-Employed Loans</a></h3>
+        <p>Flexible mortgage solutions for business owners and contractors.</p>
+      </div>
     </div>
     <p style="text-align:center; margin-top:2rem;">
       <a href="services/index.html" class="cta-button">View All Services</a>
@@ -105,30 +116,20 @@
       </ul>
     </div>
   </section>
-
-  <!-- Testimonials -->
-  <section id="testimonials" class="section light-bg">
-    <div class="container">
-      <h2>Testimonials</h2>
-      <p>Here's what our clients have to say about working with Axon Financial Group:</p>
-      <blockquote>
-        <p>“Axon took the stress out of buying our first home. They explained every step and found a mortgage that fit our budget.”</p>
-        <footer>— Sarah &amp; James, Brisbane</footer>
-      </blockquote>
-      <blockquote>
-        <p>“As a Defence member I appreciated their knowledge of my entitlements. They made the process seamless.”</p>
-        <footer>— Lt. Daniel, Gold Coast</footer>
-      </blockquote>
-      <p style="text-align:center; margin-top:1.5rem;"><a href="testimonials.html" class="cta-button">Read more testimonials</a></p>
-    </div>
-  </section>
-
   <!-- Contact callout -->
-  <section id="callout" class="section">
-    <div class="container" style="text-align:center;">
+  <section id="contact" class="section">
+    <div class="container" style="max-width:600px;">
       <h2>Ready to take the next step?</h2>
       <p>We’d love to hear about your goals and help you start your journey towards financial freedom.</p>
-      <a href="contact.html" class="cta-button">Book a Free Consultation</a>
+      <form action="https://formspree.io/f/maykewjg" method="POST" class="contact-form">
+        <label for="home-name">Name</label>
+        <input type="text" id="home-name" name="name" required>
+        <label for="home-email">Email</label>
+        <input type="email" id="home-email" name="_replyto" required>
+        <label for="home-message">Message</label>
+        <textarea id="home-message" name="message" rows="5" required></textarea>
+        <button type="submit" class="cta-button">Send Message</button>
+      </form>
     </div>
   </section>
 
