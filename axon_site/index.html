@@ -126,6 +126,14 @@
         <input type="text" id="home-name" name="name" required>
         <label for="home-email">Email</label>
         <input type="email" id="home-email" name="_replyto" required>
+        <label for="home-purpose">Purpose of enquiry</label>
+        <select id="home-purpose" name="purpose">
+          <option value="purchase">Purchase of own home</option>
+          <option value="investment">Investment property</option>
+          <option value="refinance">Refinance</option>
+          <option value="general">General information</option>
+          <option value="other">Other</option>
+        </select>
         <label for="home-message">Message</label>
         <textarea id="home-message" name="message" rows="5" required></textarea>
         <button type="submit" class="cta-button">Send Message</button>

@@ -95,9 +95,9 @@ nav {
 
 /* logo icon inside the nav */
 .logo-icon {
-  /* Increase the logo size to occupy roughly 75% of the banner height */
-  width: 48px;
-  height: 48px;
+  /* Make the logo noticeably larger than the brand text */
+  height: 2.4rem; /* 150% of the surrounding text size */
+  width: auto;
   margin-right: 0.5rem;
 }
 
@@ -300,11 +300,15 @@ nav {
 }
 
 .contact-form input,
-.contact-form textarea {
+.contact-form textarea,
+.contact-form select {
   padding: 0.75rem;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1rem;
+}
+
+.contact-form textarea {
   resize: vertical;
 }
 
@@ -368,6 +372,7 @@ nav {
 .faq-list summary {
   font-weight: 600;
   cursor: pointer;
+  color: var(--primary-color);
 }
 
 .faq-list p {
