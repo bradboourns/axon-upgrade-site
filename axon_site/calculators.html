@@ -44,73 +44,73 @@
   <section class="section container">
     <h2>Borrowing Capacity</h2>
     <p>Get an indication of how much you could borrow based on your income and expenses.</p>
-    <form id="borrow-form" class="calculator">
+    <form id="borrow-form" class="calculator" @submit.prevent="calculate">
       <label for="income">Annual income (before tax)</label>
-      <input type="number" id="income" min="0" required>
+      <input type="number" id="income" v-model.number="income" min="0" required>
       <label for="expenses">Monthly expenses</label>
-      <input type="number" id="expenses" min="0" required>
+      <input type="number" id="expenses" v-model.number="expenses" min="0" required>
       <label for="bc-rate">Interest rate (%)</label>
-      <input type="number" id="bc-rate" step="0.01" min="0" required>
+      <input type="number" id="bc-rate" v-model.number="rate" step="0.01" min="0" required>
       <label for="bc-term">Loan term (years)</label>
-      <input type="number" id="bc-term" min="1" required>
+      <input type="number" id="bc-term" v-model.number="term" min="1" required>
       <button type="submit">Calculate</button>
-      <div class="calculator-result" id="borrow-result"></div>
+      <div class="calculator-result">{{ result }}</div>
     </form>
 
     <h2>Repayment Calculator</h2>
     <p>Estimate your repayments for different loan amounts and terms.</p>
-    <form id="repay-form" class="calculator">
+    <form id="repay-form" class="calculator" @submit.prevent="calculate">
       <label for="loan-amount">Loan amount</label>
-      <input type="number" id="loan-amount" min="0" required>
+      <input type="number" id="loan-amount" v-model.number="amount" min="0" required>
       <label for="repay-rate">Interest rate (%)</label>
-      <input type="number" id="repay-rate" step="0.01" min="0" required>
+      <input type="number" id="repay-rate" v-model.number="rate" step="0.01" min="0" required>
       <label for="repay-term">Loan term (years)</label>
-      <input type="number" id="repay-term" min="1" required>
+      <input type="number" id="repay-term" v-model.number="term" min="1" required>
       <button type="submit">Calculate</button>
-      <div class="calculator-result" id="repay-result"></div>
+      <div class="calculator-result">{{ result }}</div>
     </form>
 
     <h2>Refinance Savings</h2>
     <p>Explore how refinancing could reduce your monthly repayments.</p>
-    <form id="refi-form" class="calculator">
+    <form id="refi-form" class="calculator" @submit.prevent="calculate">
       <label for="refi-amount">Loan amount</label>
-      <input type="number" id="refi-amount" min="0" required>
+      <input type="number" id="refi-amount" v-model.number="amount" min="0" required>
       <label for="current-rate">Current interest rate (%)</label>
-      <input type="number" id="current-rate" step="0.01" min="0" required>
+      <input type="number" id="current-rate" v-model.number="currentRate" step="0.01" min="0" required>
       <label for="new-rate">New interest rate (%)</label>
-      <input type="number" id="new-rate" step="0.01" min="0" required>
+      <input type="number" id="new-rate" v-model.number="newRate" step="0.01" min="0" required>
       <label for="refi-term">Remaining term (years)</label>
-      <input type="number" id="refi-term" min="1" required>
+      <input type="number" id="refi-term" v-model.number="term" min="1" required>
       <button type="submit">Calculate</button>
-      <div class="calculator-result" id="refi-result"></div>
+      <div class="calculator-result">{{ result }}</div>
     </form>
 
     <h2>Investment Property ROI</h2>
     <p>Analyse potential rental income and expenses to assess your investment’s cash flow.</p>
-    <form id="invest-form" class="calculator">
+    <form id="invest-form" class="calculator" @submit.prevent="calculate">
       <label for="property-price">Property price</label>
-      <input type="number" id="property-price" min="0" required>
+      <input type="number" id="property-price" v-model.number="price" min="0" required>
       <label for="rent">Monthly rent</label>
-      <input type="number" id="rent" min="0" required>
+      <input type="number" id="rent" v-model.number="rent" min="0" required>
       <label for="invest-expenses">Monthly expenses</label>
-      <input type="number" id="invest-expenses" min="0" required>
+      <input type="number" id="invest-expenses" v-model.number="expenses" min="0" required>
       <button type="submit">Calculate</button>
-      <div class="calculator-result" id="invest-result"></div>
+      <div class="calculator-result">{{ result }}</div>
     </form>
 
     <h2>Deposit Savings Target</h2>
     <p>Set a deposit goal and see how much you need to save each month to reach it by a given date.</p>
-    <form id="deposit-form" class="calculator">
+    <form id="deposit-form" class="calculator" @submit.prevent="calculate">
       <label for="target">Target amount</label>
-      <input type="number" id="target" min="0" required>
+      <input type="number" id="target" v-model.number="target" min="0" required>
       <label for="current">Current savings</label>
-      <input type="number" id="current" min="0" value="0" required>
+      <input type="number" id="current" v-model.number="current" min="0" required>
       <label for="deposit-years">Timeframe (years)</label>
-      <input type="number" id="deposit-years" min="1" required>
+      <input type="number" id="deposit-years" v-model.number="years" min="1" required>
       <label for="deposit-rate">Annual interest rate (%)</label>
-      <input type="number" id="deposit-rate" step="0.01" min="0" value="0" required>
+      <input type="number" id="deposit-rate" v-model.number="rate" step="0.01" min="0" required>
       <button type="submit">Calculate</button>
-      <div class="calculator-result" id="deposit-result"></div>
+      <div class="calculator-result">{{ result }}</div>
     </form>
   </section>
 
@@ -129,6 +129,11 @@
       <p>© 2025 Axon Financial Group. All rights reserved.</p>
     </div>
   </footer>
-  <script src="calculators.js"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script src="js/BorrowCapacity.js"></script>
+  <script src="js/RepaymentCalculator.js"></script>
+  <script src="js/RefinanceSavings.js"></script>
+  <script src="js/InvestmentROI.js"></script>
+  <script src="js/DepositTarget.js"></script>
 </body>
 </html>
