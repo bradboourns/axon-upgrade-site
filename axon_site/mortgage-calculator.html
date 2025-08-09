@@ -2,58 +2,45 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Mortgage Calculator | Axon Financial Group</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mortgage Calculators | Axon Financial Group</title>
+  <meta name="description" content="Mortgage calculators by Axon Financial Group: repayments, refinance savings, and borrowing power." />
+
+  <!-- Axon site styles (optional but recommended for global look) -->
+  <link rel="stylesheet" href="/style.css">
+
+  <!-- Calculator styles (root) -->
+  <link rel="stylesheet" href="/calc-suite.css">
+
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
     <nav class="container" aria-label="Main">
       <div class="logo">
-        <img src="assets/logo.png" alt="Axon Financial Group logo" class="logo-icon" />
+        <img src="/assets/logo.png" alt="Axon Financial Group logo" class="logo-icon" />
         <span>Axon Financial Group</span>
       </div>
-
-      <input type="checkbox" id="menu-toggle" class="menu-toggle" />
-      <label for="menu-toggle" class="menu-icon" aria-label="Open menu">&#9776;</label>
-
       <ul class="nav-links">
-        <li><a href="index.html#home">Home</a></li>
-        <li><a href="index.html#services">Services</a></li>
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#why">Why&nbsp;Choose&nbsp;Us</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="/#home">Home</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#why">Why Choose Us</a></li>
+        <li><a href="/mortgage-calculator.html" aria-current="page">Calculators</a></li>
+        <li><a href="/#contact">Contact</a></li>
       </ul>
-
-      <div class="nav-social">
-        <a href="https://instagram.com/axonfinancialgroup" aria-label="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
-        <a href="https://facebook.com/axonfinancialgroup" aria-label="Facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.linkedin.com/company/axonfinancialgroup" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
-      </div>
     </nav>
   </header>
 
   <main class="section container">
-    <h1>Mortgage Calculator</h1>
-    <p>Estimate your monthly repayments with our simple calculator.</p>
-    <form class="calculator" onsubmit="return false;">
-      <label for="loanAmount">Loan Amount</label>
-      <input type="number" id="loanAmount" placeholder="e.g. 500000" />
+    <h1 class="page-title">Financial Calculators</h1>
+    <p class="lead">Estimate repayments, model refinance savings, and understand borrowing power — all in one place.</p>
 
-      <label for="interestRate">Interest Rate (%)</label>
-      <input type="number" id="interestRate" step="0.01" placeholder="e.g. 5" />
-
-      <label for="termYears">Term (years)</label>
-      <input type="number" id="termYears" placeholder="e.g. 30" />
-
-      <button type="button" id="calculateBtn">Calculate</button>
-      <div id="calcResult" class="calc-result" aria-live="polite"></div>
-    </form>
+    <!-- Calculator mount point -->
+    <div id="mortgage-calculator"></div>
   </main>
 
   <footer class="footer">
@@ -64,6 +51,18 @@
     </div>
   </footer>
 
-  <script src="mortgage-calculator.js"></script>
+  <!-- Dependencies (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <!-- Calculator logic (root) -->
+  <script src="/calc-suite.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      MortgageCalcSuite.mount('#mortgage-calculator', {
+        brandColor: '#0ea5e9',
+        onGetAdvice: () => location.href = '/thank-you.html'
+      });
+    });
+  </script>
 </body>
 </html>
