@@ -1,170 +1,357 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Calculators | Axon Financial Group</title>
-  <meta name="description" content="Use our interactive mortgage calculators to estimate your borrowing capacity, repayments, refinancing savings and investment returns.">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Axon Mortgage Tools | Axon Financial Group</title>
+  <meta name="description" content="Static, drop-in mortgage calculators: repayments, refinance savings, borrowing power, and LVR." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles (Axon themed) -->
+  <style>
+    :root { --brand:#0ea5e9; --accent:#14b8a6; --ink:#0f172a; --muted:#6b7280; --line:#eef1f5; --panel:#ffffff; --soft:#f6f8fb; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--ink);background:#fff}
+    .container{max-width:1100px;margin:0 auto;padding:20px}
+    .calc-wrap{max-width:1100px;margin:0 auto;padding:20px}
+    .calc-header{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+    .calc-logo{height:72px;width:auto}
+    .calc-title{font:700 1.3rem/1.2 Montserrat;color:var(--brand)}
+    .calc-subtle{font:500 .85rem/1.4 Montserrat;color:var(--muted);margin-top:2px}
+
+    .calc-card{border-radius:16px;border:1px solid var(--line);padding:20px;background:var(--panel);box-shadow:0 6px 20px rgba(0,0,0,.06)}
+    .calc-grid{display:grid;gap:16px}
+    .calc-2{grid-template-columns:1fr}
+    @media(min-width:900px){.calc-2{grid-template-columns:1fr 1fr}}
+
+    .calc-muted{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:14px}
+    .calc-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 20px}
+    .calc-tab{flex:1 1 180px;text-align:center;padding:12px;border-radius:12px;border:1px solid #e5e7eb;background:#fff;cursor:pointer;font:700 .95rem/1 Montserrat;color:var(--ink)}
+    .calc-tab[aria-selected="true"]{background:linear-gradient(180deg, color-mix(in srgb, var(--brand) 10%, #fff 90%), #fff);border-color:var(--brand);color:var(--brand)}
+
+    .calc-field{display:grid;gap:6px;margin-bottom:12px}
+    .calc-label{font:.9rem/1.2 Montserrat;color:var(--muted)}
+    .calc-input{height:44px;border:1px solid #e5e7eb;border-radius:12px;padding:0 12px;font:500 1rem/1.2 Montserrat;width:100%}
+    .calc-range{width:100%}
+
+    .calc-stat{border:1px solid var(--line);border-radius:14px;padding:12px;background:#fff}
+    .calc-stat .k{font:.78rem/1.2 Montserrat;color:var(--muted);margin-bottom:4px}
+    .calc-stat .v{font:700 1rem/1.2 Montserrat;color:var(--ink)}
+
+    .calc-btn{height:44px;border-radius:12px;background:var(--brand);color:#fff;border:0;padding:0 14px;font:700 .95rem/1 Montserrat;cursor:pointer}
+    .calc-btn:disabled{opacity:.6;cursor:not-allowed}
+
+    .badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:6px 10px;font:.8rem Montserrat}
+    .badge.good{background:color-mix(in srgb, var(--accent) 10%, #fff 90%); color:#0b7667; border:1px solid color-mix(in srgb, var(--accent) 30%, #fff 70%)}
+    .badge.warn{background:#fff7ed;color:#c2410c;border:1px solid #fed7aa}
+    .badge.high{background:#fef2f2;color:#b91c1c;border:1px solid #fecaca}
+
+    .lead{color:var(--muted)}
+
+    /* Disclaimer block */
+    .calc-disclaimer{margin-top:18px;border:1px solid var(--line);background:#fff;border-radius:14px;padding:16px}
+    .calc-disclaimer h2{margin:0 0 8px 0;font:700 1rem/1.2 Montserrat;color:var(--ink)}
+    .calc-disclaimer p,.calc-disclaimer li{color:var(--muted);font:.9rem/1.5 Montserrat;margin:.25rem 0}
+    .calc-disclaimer ul{margin:.25rem 0 0 1.1rem;padding:0}
+    .calc-disclaimer a{color:var(--brand);text-decoration:none}
+    .calc-disclaimer a:hover{text-decoration:underline}
+  </style>
 </head>
 <body>
-  <header>
-    <nav class="container" aria-label="Main">
-      <div class="logo">
-        <img src="assets/logo.png" alt="Axon Financial Group logo" class="logo-icon">
-        <span>Axon Financial Group</span>
+  <main class="container">
+    <div class="calc-wrap">
+      <div class="calc-header">
+        <img class="calc-logo" src="assets/logo and axon transparent.png" alt="Axon Financial Group logo" />
+        <div>
+          <div class="calc-title">Axon Mortgage Tools</div>
+          <div class="calc-subtle">Estimates only. Does not consider fees, LMI, or state charges.</div>
+        </div>
       </div>
-      <input type="checkbox" id="menu-toggle" class="menu-toggle">
-      <label for="menu-toggle" class="menu-icon" aria-label="Open menu">☰</label>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="services/index.html">Services</a></li>
-        <li><a href="calculators.html" class="active">Calculators</a></li>
-        <li><a href="blog/index.html">Blog</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="team.html">Team</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <div class="nav-social">
-        <a href="https://instagram.com/axonfinancialgroup" aria-label="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
-        <a href="https://facebook.com/axonfinancialgroup" aria-label="Facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.linkedin.com/company/axonfinancialgroup" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
-      </div>
-    </nav>
-  </header>
 
-  <section class="hero" style="background:linear-gradient(90deg, var(--primary-color), var(--secondary-color)); color: var(--light-text);">
-    <div class="hero-inner container">
-      <h1 style="color: var(--light-text);">Mortgage Calculators</h1>
-      <p style="color: var(--light-text); max-width:700px;">Our calculators provide quick estimates to help you make informed decisions.  For personalised advice, please contact our team.</p>
+      <div class="calc-card">
+        <div class="calc-tabs" id="tabs"></div>
+        <div id="panes"></div>
+      </div>
+
+      <!-- Built‑in compliance disclaimer -->
+      <section class="calc-disclaimer" aria-label="Calculator disclaimer">
+        <details>
+          <summary><strong>General information only</strong> – results are estimates and not advice. <em>Click to read more</em>.</summary>
+          <div>
+            <p><strong>Disclaimer:</strong> The results provided by these calculators are <em>general estimates only</em>. They are based on inputs and assumptions that may not reflect your individual circumstances. Results do not constitute financial, legal, or tax advice and must not be relied upon to make decisions.</p>
+            <ul>
+              <li>Repayments are calculated on principal &amp; interest with the frequency you choose; fees, charges, LMI and government duties are <em>excluded</em> unless stated.</li>
+              <li>Interest rates can change at any time. Actual borrowing capacity, repayments and savings will differ between lenders.</li>
+              <li>Past performance is not a reliable indicator of future results.</li>
+            </ul>
+            <p>We recommend you obtain personalised advice from a licensed mortgage broker or financial adviser before acting on these results. If you would like tailored guidance, please <a href="/thank-you.html">contact Axon Financial Group</a>.</p>
+          </div>
+        </details>
+      </section>
     </div>
-  </section>
+  </main>
 
-  <section class="section container">
-    <h2><i class="fas fa-wallet" aria-hidden="true"></i> Borrowing Capacity</h2>
-    <p>Get an indication of how much you could borrow based on your income and expenses.</p>
-    <form id="borrow-form" class="calculator">
-      <div class="form-group">
-        <label for="income">Annual income (before tax)</label>
-        <input type="number" id="income" min="0" required>
-      </div>
-      <div class="form-group">
-        <label for="expenses">Monthly expenses</label>
-        <input type="number" id="expenses" min="0" required>
-      </div>
-      <div class="form-group">
-        <label for="bc-rate">Interest rate (%)</label>
-        <input type="number" id="bc-rate" step="0.01" min="0" required>
-      </div>
-      <div class="form-group">
-        <label for="bc-term">Loan term (years)</label>
-        <input type="number" id="bc-term" min="1" required>
-      </div>
-      <button type="submit">Calculate</button>
-      <div class="calculator-result" id="borrow-result"></div>
-    </form>
+  <!-- CDN for charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 
-    <h2><i class="fas fa-calculator" aria-hidden="true"></i> Repayment Calculator</h2>
-    <p>Estimate your repayments for different loan amounts and terms.</p>
-    <form id="repay-form" class="calculator">
-      <div class="form-group">
-        <label for="loan-amount">Loan amount</label>
-        <input type="number" id="loan-amount" min="0" required>
-      </div>
-      <div class="form-group">
-        <label for="repay-rate">Interest rate (%)</label>
-        <input type="number" id="repay-rate" step="0.01" min="0" required>
-      </div>
-      <div class="form-group">
-        <label for="repay-term">Loan term (years)</label>
-        <input type="number" id="repay-term" min="1" required>
-      </div>
-      <button type="submit">Calculate</button>
-      <div class="calculator-result" id="repay-result"></div>
-    </form>
+  <script>
+    // ===== Utilities =====
+    const AUD = n => n.toLocaleString("en-AU", { style: "currency", currency: "AUD", maximumFractionDigits: 0 });
+    const N = v => Number(String(v).replace(/[^0-9.]/g, "")) || 0;
+    const toRGBA = (hex,a) => { const m=/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)||[]; const r=parseInt(m[1]||"0",16), g=parseInt(m[2]||"0",16), b=parseInt(m[3]||"0",16); return `rgba(${r},${g},${b},${a})`; };
+    function pmt(ratePerPeriod, n, pv){ if(ratePerPeriod===0) return -(pv/n); const r=ratePerPeriod; return -(pv*r)/(1-Math.pow(1+r,-n)); }
+    function buildSchedule({ principal, annualRate, years, frequency="monthly" }){
+      const ppy = frequency==="weekly"?52:frequency==="fortnightly"?26:12;
+      const n = Math.round(years*ppy), r = (annualRate/100)/ppy;
+      const payment = -pmt(r,n,principal);
+      let bal=principal, rows=[], totI=0, totP=0;
+      for(let i=1;i<=n;i++){
+        const interest=bal*r, princ=Math.min(payment - interest, bal);
+        bal=Math.max(0, bal-princ); totI+=interest; totP+=princ;
+        if (frequency==="monthly" || i%4===0 || i===n) rows.push({period:i,balance:bal});
+      }
+      return { rows, payment, totalInterest:totI, totalPrincipal:totP, periodsPerYear:ppy };
+    }
 
-    <h2><i class="fas fa-sync-alt" aria-hidden="true"></i> Refinance Savings</h2>
-    <p>Explore how refinancing could reduce your monthly repayments.</p>
-    <form id="refi-form" class="calculator">
-      <div class="form-group">
-        <label for="refi-amount">Loan amount</label>
-        <input type="number" id="refi-amount" min="0" required>
-      </div>
-      <div class="form-group">
-        <label for="current-rate">Current interest rate (%)</label>
-        <input type="number" id="current-rate" step="0.01" min="0" required>
-      </div>
-      <div class="form-group">
-        <label for="new-rate">New interest rate (%)</label>
-        <input type="number" id="new-rate" step="0.01" min="0" required>
-      </div>
-      <div class="form-group">
-        <label for="refi-term">Remaining term (years)</label>
-        <input type="number" id="refi-term" min="1" required>
-      </div>
-      <button type="submit">Calculate</button>
-      <div class="calculator-result" id="refi-result"></div>
-    </form>
+    // ===== DOM helpers =====
+    const el = (tag, attrs = {}, ...children) => {
+      const node = document.createElement(tag);
+      for (const [k, v] of Object.entries(attrs)) {
+        if (k === 'class') node.className = v;
+        else if (k.startsWith('on') && typeof v === 'function') node.addEventListener(k.slice(2).toLowerCase(), v);
+        else if (k === 'style' && v && typeof v === 'object') Object.assign(node.style, v);
+        else node.setAttribute(k, v);
+      }
+      children.flat().forEach((child) => {
+        if (child == null) return;
+        if (child instanceof Node) node.appendChild(child);
+        else node.appendChild(document.createTextNode(String(child)));
+      });
+      return node;
+    };
 
-    <h2><i class="fas fa-chart-line" aria-hidden="true"></i> Investment Property ROI</h2>
-    <p>Analyse potential rental income and expenses to assess your investment’s cash flow.</p>
-    <form id="invest-form" class="calculator">
-      <div class="form-group">
-        <label for="property-price">Property price</label>
-        <input type="number" id="property-price" min="0" required>
-      </div>
-      <div class="form-group">
-        <label for="rent">Monthly rent</label>
-        <input type="number" id="rent" min="0" required>
-      </div>
-      <div class="form-group">
-        <label for="invest-expenses">Monthly expenses</label>
-        <input type="number" id="invest-expenses" min="0" required>
-      </div>
-      <button type="submit">Calculate</button>
-      <div class="calculator-result" id="invest-result"></div>
-    </form>
+    const grid2=(a,b)=>el('div',{class:'calc-grid calc-2'},a,b);
+    const grid3=(...nodes)=>el('div',{class:'calc-grid',style:{gridTemplateColumns:'repeat(3,1fr)'}}, ...nodes);
+    const field=(l,n)=>el('div',{class:'calc-field'}, el('label',{class:'calc-label'},l), n);
+    const stat=(k,node)=>{const wrap=el('div',{class:'calc-stat'}); wrap.append(el('div',{class:'k'},k), el('div',{class:'v'})); if(node instanceof Node){ wrap.lastChild.replaceWith(node);} else { wrap.lastChild.textContent=node;} return wrap; };
+    const moneyInput=(v,on)=>{const i=el('input',{type:'text',class:'calc-input',value:AUD(v)}); i.addEventListener('blur',()=>{const n=N(i.value); i.value=AUD(n); on(n);}); i.addEventListener('keydown',e=>{if(e.key==='Enter')i.blur();});return i;};
+    const numberWithSlider=(val,min,max,step,on)=>{const n=el('input',{type:'number',class:'calc-input',step:String(step),value:String(val)}), r=el('input',{type:'range',class:'calc-range',min:String(min),max:String(max),step:String(step),value:String(val)}); n.addEventListener('input',()=>{const v=Number(n.value||0); r.value=String(v); on(v);}); r.addEventListener('input',()=>{const v=Number(r.value); n.value=String(v); on(v);}); return el('div',{},n,el('div',{},r));};
 
-    <h2><i class="fas fa-piggy-bank" aria-hidden="true"></i> Deposit Savings Target</h2>
-    <p>Set a deposit goal and see how much you need to save each month to reach it by a given date.</p>
-    <form id="deposit-form" class="calculator">
-      <div class="form-group">
-        <label for="target">Target amount</label>
-        <input type="number" id="target" min="0" required>
-      </div>
-      <div class="form-group">
-        <label for="current">Current savings</label>
-        <input type="number" id="current" min="0" value="0" required>
-      </div>
-      <div class="form-group">
-        <label for="deposit-years">Timeframe (years)</label>
-        <input type="number" id="deposit-years" min="1" required>
-      </div>
-      <div class="form-group">
-        <label for="deposit-rate">Annual interest rate (%)</label>
-        <input type="number" id="deposit-rate" step="0.01" min="0" value="0" required>
-      </div>
-      <button type="submit">Calculate</button>
-      <div class="calculator-result" id="deposit-result"></div>
-    </form>
-  </section>
+    // ===== Charts =====
+    function renderBalanceChart(ctx, rows, years, ppy, color){
+      return new Chart(ctx, {
+        type:'line',
+        data:{
+          labels: rows.map(r=>`${Math.round((r.period/(years*ppy))*years)}y`),
+          datasets:[{
+            data: rows.map(r=>Math.round(r.balance)),
+            borderColor: color,
+            backgroundColor: toRGBA(color,.15),
+            fill:true,
+            pointRadius:0,
+            tension:.25
+          }]
+        },
+        options:{
+          responsive:true,
+          maintainAspectRatio:false,
+          plugins:{
+            legend:{display:false},
+            tooltip:{callbacks:{label:c=>AUD(c.parsed.y)}}
+          },
+          scales:{
+            x:{ grid:{display:false} },
+            y:{ ticks:{ callback:v=>v>=1e6?`${v/1e6}m`:v>=1e3?`${v/1e3}k`:v }, grid:{color:'#eef1f5'} }
+          }
+        }
+      });
+    }
 
-  <section class="section" style="text-align:center;">
-    <div class="container">
-      <h2>Need more clarity?</h2>
-      <p>Our calculators are a starting point.  For tailored advice, speak with one of our brokers.</p>
-      <a href="contact.html" class="cta-button">Contact Us</a>
-    </div>
-  </section>
+    function renderPie(ctx, a, b, color){
+      return new Chart(ctx, {
+        type:'doughnut',
+        data:{ labels:['Principal','Interest'], datasets:[{ data:[a,b], backgroundColor:[color,'#94a3b8'], borderWidth:0 }]},
+        options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{position:'bottom'} } }
+      });
+    }
 
-  <footer class="footer">
-    <div class="container">
-      <p>Credit Representative Number 561405 is authorised under Australian Credit Licence 389087.</p>
-      <p>Your full financial situation and requirements need to be considered prior to any offer or acceptance of a loan product. This website provides general information only and does not constitute financial advice.</p>
-      <p>© 2025 Axon Financial Group. All rights reserved.</p>
-    </div>
-  </footer>
-  <script src="calculators.js"></script>
+    // ===== Calculators =====
+    function Repayments({brandColor}){
+      let price=750000, depositPct=10, rate=5.14, years=30, freq='monthly';
+      const priceIn=moneyInput(price,v=>{price=v;update();});
+      const depRange=el('input',{type:'range',class:'calc-range',min:'0',max:'60',step:'1',value:String(depositPct),oninput:e=>{depositPct=+e.target.value;depVal.textContent=`${depositPct}%`;update();}});
+      const depVal=el('strong',{},`${depositPct}%`);
+      const rateCtl=numberWithSlider(rate,0,15,0.05,v=>{rate=v;update();});
+      const yearsCtl=numberWithSlider(years,1,40,1,v=>{years=v;update();});
+      const freqSel=el('select',{class:'calc-input',onchange:e=>{freq=e.target.value;update();}}, el('option',{value:'monthly'},'Monthly'), el('option',{value:'fortnightly'},'Fortnightly'), el('option',{value:'weekly'},'Weekly'));
+      const payV=el('div'), loanV=el('div'), intV=el('div');
+      const repLineCanvas = el('canvas');
+      const lineWrap=el('div',{class:'calc-muted',style:{height:'220px'}}, repLineCanvas);
+      const repPieCanvas = el('canvas');
+      const pieWrap =el('div',{class:'calc-muted',style:{height:'220px'}}, repPieCanvas);
+      let lineChart=null, pieChart=null;
+      function update(){
+        const deposit=(price*depositPct)/100; const principal=Math.max(0, price - deposit);
+        const {rows,payment,totalInterest,totalPrincipal,periodsPerYear}=buildSchedule({principal, annualRate:rate, years, frequency:freq});
+        payV.textContent=AUD(payment); loanV.textContent=AUD(principal); intV.textContent=AUD(totalInterest);
+        if(!lineChart){ lineChart=renderBalanceChart(repLineCanvas, rows, years, periodsPerYear, brandColor); }
+        else { lineChart.data.labels=rows.map(r=>`${Math.round((r.period/(years*periodsPerYear))*years)}y`); lineChart.data.datasets[0].data=rows.map(r=>Math.round(r.balance)); lineChart.update(); }
+        if(!pieChart){ pieChart=renderPie(repPieCanvas, totalPrincipal, totalInterest, brandColor); }
+        else { pieChart.data.datasets[0].data=[totalPrincipal,totalInterest]; pieChart.update(); }
+      }
+      const controls=el('div',{},
+        field('Property price', priceIn),
+        field(el('span',{},'Deposit ',depVal), depRange),
+        grid2(field('Interest rate (% p.a.)', rateCtl), field('Loan term (years)', yearsCtl)),
+        grid2(field('Repayment frequency', freqSel), el('div',{}, el('button',{class:'calc-btn'},'Get tailored advice'))),
+        grid3(stat('Estimated repayment',payV), stat('Loan amount',loanV), stat('Total interest',intV))
+      );
+      const left=el('div',{class:'calc-card'}, el('div',{class:'calc-title'},'Mortgage Repayment Calculator'), controls);
+      const right=el('div',{}, lineWrap, el('div',{style:{height:'12px'}}), pieWrap);
+      update();
+      return grid2(left,right);
+    }
+
+    function Refinance({brandColor}){
+      let balance=600000, remYears=25, currRate=5.14, newRate=5.14, switchCost=1200;
+      const bal=moneyInput(balance,v=>{balance=v;update();});
+      const yrs=numberWithSlider(remYears,1,40,1,v=>{remYears=v;update();});
+      const r1 =numberWithSlider(currRate,0,15,0.05,v=>{currRate=v;update();});
+      const r2 =numberWithSlider(newRate,0,15,0.05,v=>{newRate=v;update();});
+      const cost=moneyInput(switchCost,v=>{switchCost=v;update();});
+      const saveMonthlyV=el('div'), totalSaveV=el('div'), breakEvenV=el('div');
+      const refPieCanvas = el('canvas');
+      const pieWrap=el('div',{class:'calc-muted',style:{height:'220px'}}, refPieCanvas);
+      let pie=null;
+      function update(){
+        const n=remYears*12, rc=currRate/100/12, rn=newRate/100/12;
+        const payC=-pmt(rc,n,balance), payN=-pmt(rn,n,balance);
+        const totIC=(payC*n)-balance; const totIN=(payN*n)-balance + switchCost;
+        const monthlySaving=Math.max(0, payC - payN); const totalSaving=Math.max(0, totIC - totIN);
+        const breakEven=monthlySaving>0 ? Math.ceil(switchCost/monthlySaving) : Infinity;
+        saveMonthlyV.textContent=AUD(monthlySaving); totalSaveV.textContent=AUD(totalSaving); breakEvenV.textContent=Number.isFinite(breakEven)?`${breakEven} months`:'—';
+        if(!pie){
+          pie=new Chart(refPieCanvas, {
+            type:'doughnut',
+            data:{ labels:['Interest (current)','Interest (new incl. costs)'], datasets:[{ data:[Math.max(0,totIC),Math.max(0,totIN)], backgroundColor:[toRGBA(brandColor,.6),'#94a3b8'], borderWidth:0 }]},
+            options:{ responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}} }
+          });
+        } else {
+          pie.data.datasets[0].data=[Math.max(0,totIC), Math.max(0,totIN)];
+          pie.update();
+        }
+      }
+      const content=el('div',{},
+        field('Current balance', bal),
+        grid3(field('Remaining term (years)', yrs), field('Current rate (% p.a.)', r1), field('New rate (% p.a.)', r2)),
+        field('Switching costs (application, discharge etc.)', cost),
+        grid3(stat('Monthly saving',saveMonthlyV), stat('Total saving (life)',totalSaveV), stat('Break-even time',breakEvenV)),
+        pieWrap
+      );
+      update();
+      return el('div',{class:'calc-card'}, el('div',{class:'calc-title'},'Refinance Savings'), content);
+    }
+
+    function BorrowingPower(){
+      let income=180000, expenses=3500, otherDebt=0, rate=5.14, buffer=3, years=30;
+      const inc=moneyInput(income,v=>{income=v;update();});
+      const exp=moneyInput(expenses,v=>{expenses=v;update();});
+      const oth=moneyInput(otherDebt,v=>{otherDebt=v;update();});
+      const rateCtl=numberWithSlider(rate,0,15,0.05,v=>{rate=v;update();});
+      const bufCtl =numberWithSlider(buffer,0,5,0.1,v=>{buffer=v;update();});
+      const yrsCtl =numberWithSlider(years,1,40,1,v=>{years=v;update();});
+      const powV=el('div'), payV=el('div'), surV=el('div');
+      function update(){
+        const stressed=rate+buffer, r=stressed/100/12, n=years*12; const avail=Math.max(0,(income/12)-expenses-otherDebt);
+        const capacity=avail*0.30; const borrowing = r===0 ? capacity*n : capacity*(1-Math.pow(1+r,-n))/r; const payListed=-pmt(rate/100/12,n,borrowing);
+        powV.textContent=AUD(borrowing); payV.textContent=AUD(payListed); surV.textContent=AUD(capacity);
+      }
+      const content=el('div',{},
+        field('Gross annual income',inc), field('Monthly living expenses',exp), field('Other monthly debt repayments',oth),
+        grid3(field('Interest rate (% p.a.)',rateCtl), field('Stress buffer (%)',bufCtl), field('Loan term (years)',yrsCtl)),
+        grid3(stat('Estimated borrowing power',powV), stat('At listed rate, est. payment',payV), stat('Used surplus (30%)',surV)),
+        el('button',{class:'calc-btn'},'Discuss options')
+      );
+      update();
+      return el('div',{class:'calc-card'}, el('div',{class:'calc-title'},'Borrowing Power (estimate)'), content);
+    }
+
+    function LVR({brandColor}){
+      let price=800000, deposit=80000, costs=0; // costs shown for transparency, not used in LVR math
+      const p=moneyInput(price,v=>{price=v;update();});
+      const d=moneyInput(deposit,v=>{deposit=v;update();});
+      const c=moneyInput(costs,v=>{costs=v;update();});
+      const loanV=el('div'), lvrV=el('div'), bandV=el('div');
+      const badge=el('div',{class:'badge'}, bandV);
+      const lvrPieCanvas = el('canvas');
+      const pieWrap=el('div',{class:'calc-muted',style:{height:'220px'}}, lvrPieCanvas);
+      let pie=null;
+      function update(){
+        const loan=Math.max(0, price - deposit); const lvr = price ? (loan/price)*100 : 0; const band=lvr<=80?'Good':lvr<=90?'Moderate':'High';
+        loanV.textContent=AUD(loan); lvrV.textContent=`${lvr.toFixed(1)}%`; bandV.textContent=band;
+        // update badge class on every render
+        badge.className = 'badge ' + (lvr<=80?'good':lvr<=90?'warn':'high');
+        if(!pie){
+          pie=new Chart(lvrPieCanvas, {
+            type:'doughnut',
+            data:{ labels:['Loan','Equity'], datasets:[{ data:[loan, Math.max(0,price-loan)], backgroundColor:[brandColor,'#94a3b8'], borderWidth:0 }]},
+            options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{position:'bottom'} } }
+          });
+        } else {
+          pie.data.datasets[0].data=[loan, Math.max(0,price-loan)];
+          pie.update();
+        }
+      }
+      const content=el('div',{},
+        field('Property price',p), field('Deposit',d), field('Upfront costs (stamp duty etc.)',c),
+        grid3(stat('Loan amount',loanV), stat('LVR',lvrV), el('div',{class:'calc-stat'}, el('div',{class:'k'},'Risk band'), badge)),
+        pieWrap
+      );
+      update();
+      return el('div',{class:'calc-card'}, el('div',{class:'calc-title'},'LVR (Loan-to-Value Ratio)'), content);
+    }
+
+    // ===== Tabs / Mount =====
+    (function mount(){
+      const brandColor = getComputedStyle(document.documentElement).getPropertyValue('--brand').trim() || '#0ea5e9';
+      const tabsEl = document.getElementById('tabs');
+      const panes = document.getElementById('panes');
+      const TABS=[ {id:'repay',label:'Repayments',view:Repayments}, {id:'refi',label:'Refinance savings',view:Refinance}, {id:'borrow',label:'Borrowing power',view:BorrowingPower}, {id:'lvr',label:'LVR',view:LVR} ];
+      let active='repay';
+      const buttons=TABS.map(t=>el('button',{class:'calc-tab','aria-selected':String(t.id===active),onclick:()=>switchTab(t.id)},t.label));
+      function switchTab(id){ active=id; buttons.forEach((b,i)=>b.setAttribute('aria-selected', String(TABS[i].id===id))); render(); }
+      function render(){ panes.innerHTML=''; panes.appendChild(TABS.find(t=>t.id===active).view({brandColor})); }
+      tabsEl.append(...buttons); render();
+    })();
+
+    // ===== Minimal self-tests =====
+    (function selfTests(){
+      try {
+        // el() basics
+        const tmp = el('div',{}, 'Hi', null, undefined, el('span',{},'X'));
+        console.assert(tmp.childNodes.length === 2, 'el() should append only non-null nodes');
+        console.assert(tmp.querySelector('span') !== null, 'el() should include element children');
+        const tmp2 = el('div',{class:'x', style:{color:'red'}}, 'ok');
+        console.assert(tmp2.className === 'x', 'class should be set');
+        // grid3 spreads children
+        const g = grid3(el('div',{}), el('div',{}), el('div',{}));
+        console.assert(g.children.length === 3, 'grid3 should have 3 children');
+        // pmt sanity: zero rate
+        console.assert(Math.round(-pmt(0, 12, 12000)) === 1000, 'pmt zero rate should be pv/n');
+        // schedule basic
+        const s = buildSchedule({ principal: 12000, annualRate: 0, years: 1, frequency: 'monthly' });
+        console.assert(s.rows.length > 0 && s.payment < 0 === false, 'schedule should produce rows and positive payment');
+        // color util
+        console.assert(/^rgba\(/.test(toRGBA('#0ea5e9', .2)), 'toRGBA should return rgba() string');
+        console.log('[CalcSuite] Self-tests passed');
+      } catch (e) {
+        console.error('[CalcSuite] Self-tests failed', e);
+      }
+    })();
+  </script>
 </body>
 </html>
