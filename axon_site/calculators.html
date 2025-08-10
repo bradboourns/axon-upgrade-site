@@ -11,6 +11,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+
   <!-- Styles (Axon themed) -->
   <style>
     :root { --brand:#0ea5e9; --accent:#14b8a6; --ink:#0f172a; --muted:#6b7280; --line:#eef1f5; --panel:#ffffff; --soft:#f6f8fb; }
@@ -62,6 +65,30 @@
   </style>
 </head>
 <body>
+  <header>
+    <nav class="container" aria-label="Main">
+      <div class="logo">
+        <img src="assets/logo.png" alt="Axon Financial Group logo" class="logo-icon" />
+        <span>Axon Financial Group</span>
+      </div>
+      <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+      <label for="menu-toggle" class="menu-icon" aria-label="Open menu">☰</label>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services/index.html">Services</a></li>
+        <li><a href="calculators.html" class="active">Calculators</a></li>
+        <li><a href="blog/index.html">Blog</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-social">
+        <a href="https://instagram.com/axonfinancialgroup" aria-label="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+        <a href="https://facebook.com/axonfinancialgroup" aria-label="Facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.linkedin.com/company/axonfinancialgroup" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </nav>
+  </header>
   <main class="container">
     <div class="calc-wrap">
       <div class="calc-header">
